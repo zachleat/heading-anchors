@@ -187,7 +187,7 @@ class HeadingAnchors extends HTMLElement {
 
 	getAccessibleTextPrefix() {
 		// Useful for i18n
-		return this.getAttribute(HeadingAnchors.attributes.prefix) || "Jump to section titled:";
+		return this.getAttribute(HeadingAnchors.attributes.prefix) || "Jump to section titled";
 	}
 
 	getContent() {
@@ -208,7 +208,7 @@ class HeadingAnchors extends HTMLElement {
 		anchor.classList.add(HeadingAnchors.classes.anchor);
 
 		let content = this.getContent();
-		anchor.innerHTML = `<span class="${HeadingAnchors.classes.srOnly}">${this.getAccessibleTextPrefix()} ${heading.textContent}</span><span aria-hidden="true">${content}</span>`;
+		anchor.innerHTML = `<span class="${HeadingAnchors.classes.srOnly}">${this.getAccessibleTextPrefix()}: ${heading.textContent}</span><span aria-hidden="true">${content}</span>`;
 
 		return anchor;
 	}
