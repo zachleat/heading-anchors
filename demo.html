@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<title>heading-anchors Web Component</title>
+		<style>
+		h1,h2,h3,h4,h5,h6 {
+			font-family: system-ui, sans-serif;
+		}
+		/* Eliminate layout shift */
+		heading-anchors:not(:defined) :is(h2,h3,h4,h5,h6):after {
+			content: "#";
+			padding: 0 .25em;
+			opacity: 0;
+		}
+		</style>
+		<script type="module" src="./heading-anchors.js"></script>
+	</head>
+	<body>
+		<header>
+			<h1>&lt;heading-anchors&gt; Web Component</h1>
+		</header>
+		<main>
+			<p>Return to the <a href="https://github.com/zachleat/heading-anchors">GitHub Repository</a>.</p>
+			<heading-anchors>
+				<h2 id="heading-2">Heading 2</h2>
+				<p>This is simulated content.</p>
+				<h3 id="heading-3">Heading 3</h3>
+				<p>This is simulated content.</p>
+				<h4 id="heading-4">Heading 4</h4>
+				<p>This is simulated content.</p>
+				<h2 id="heading-2b">Heading 2b</h2>
+				<p>This is simulated content.</p>
+				<h2 id="heading-2c" data-ha-exclude>Heading 2c (Skipped)</h2>
+				<p>This is simulated content.</p>
+				<h2 id="heading-2d">Heading 2d</h2>
+				<p>This is simulated content.</p>
+				<h2 id="heading-2e">Heading 2e This is a very long header that will wrap This is a very long header that will wrap This is a very long header that will wrap</h2>
+				<p>This is simulated content.</p>
+			</heading-anchors>
+
+			<heading-anchors prefix="Ir a la sección titulada:">
+				<h2 id="i18n">Internationalized accessible link text</h2>
+			</heading-anchors>
+
+			<heading-anchors content="&">
+				<h2 id="glyph">Custom Glyph</h2>
+			</heading-anchors>
+
+			<heading-anchors content="&">
+				<style>
+				#fontfamily .ha-placeholder { font-family: Georgia }
+				</style>
+				<h2 id="fontfamily">Override font-family</h2>
+			</heading-anchors>
+		</main>
+	</body>
+</html>
