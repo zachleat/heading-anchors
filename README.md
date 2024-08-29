@@ -21,7 +21,8 @@ Include the `heading-anchors.js` file on your web site (via `<script type="modul
 
 ### Options
 
-* Internationalization (i18n) friendly using the `prefix` attribute to change the accessible text inside the anchor links.
+* Use the `selector` attribute to change the headings used, e.g. `<heading-anchors selector="h2,h3,h4">`
+* Internationalization (i18n) friendly using the `prefix` attribute to change the accessible text inside the anchor links, e.g. `<heading-anchors prefix="Ir a la sección titulada">` (replaces default `Jump to section titled`)
 * Use the `content` attribute to change the character used.
 * Style the anchor link using `.ha-placeholder` selector.
 
