@@ -4,6 +4,8 @@ A web component to add anchor links to heading elements that have an `id` attrib
 
 Inspired by [David Darnes’ `<heading-anchors>`](https://github.com/daviddarnes/heading-anchors).
 
+* [Demo](https://zachleat.github.io/heading-anchors/demo.html) on GitHub Pages
+
 ## Installation
 
 ```
