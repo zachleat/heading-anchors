@@ -16,11 +16,12 @@ Include the `heading-anchors.js` file on your web site (via `<script type="modul
 
 ## Features
 
-* Links are positioned alongside heading text, but _not_ nested inside of headings (for improved screen-reader compatibility and accessibility)
-* Prefers the CSS Anchoring API (where available) but works using JavaScript positioning when the API is not available.
-* Establishes a placeholder element to establish space for the anchor link and so that heading text doesn’t reflow during interaction
-* Automatically matches `font` styling of the heading (`font-family`, `line-height`, `font-size`, and `font-weight`)
+* Useful when you want preserve heading text as is (selectable, able to nest other links, etc).
 * Useful when you want to exclude anchor links from your RSS feed.
+* Links are positioned alongside heading text, but _not_ nested inside of headings (for improved screen-reader compatibility and accessibility)
+* Establishes a placeholder element to establish space for the anchor link and so that heading text doesn’t reflow during interaction
+* Prefers the CSS Anchoring API (where available) but works using JavaScript positioning when the API is not available.
+* Automatically matches `font` styling of the heading (`font-family`, `line-height`, `font-size`, and `font-weight`)
 
 ### Options
 
