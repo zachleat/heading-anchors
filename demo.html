@@ -6,8 +6,12 @@
 		<meta name="description" content="">
 		<title>heading-anchors Web Component</title>
 		<style>
-		h1,h2,h3,h4,h5,h6 {
+		/* Demo styles */
+		body {
 			font-family: system-ui, sans-serif;
+		}
+		.spacer {
+			height: 80vh;
 		}
 		/* Eliminate layout shift */
 		heading-anchors:not(:defined) :is(h2,h3,h4,h5,h6):after {
@@ -54,6 +58,11 @@
 				#fontfamily .ha-placeholder { font-family: Georgia }
 				</style>
 				<h2 id="fontfamily">Override font-family</h2>
+			</heading-anchors>
+
+			<div class="spacer"></div>
+			<heading-anchors>
+				<h2 id="keyboardtab">Tabbing to offscreen anchor</h2>
 			</heading-anchors>
 		</main>
 	</body>

@@ -34,8 +34,8 @@ class HeadingAnchors extends HTMLElement {
 }
 .${HeadingAnchors.classes.anchor} {
 	position: absolute;
-	left: var(--ha_offsetx, -9999px);
-	top: var(--ha_offsety, -9999px);
+	left: var(--ha_offsetx);
+	top: var(--ha_offsety);
 	text-decoration: none;
 	opacity: 0;
 }
