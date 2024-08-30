@@ -1,6 +1,6 @@
 # `<heading-anchors>` Web Component
 
-A web component to add anchor links to heading elements that have an `id` attribute.
+A web component to add and position sibling anchor links for heading elements (`h1`–`h6`) when they have an `id` attribute.
 
 Inspired by [David Darnes’ `<heading-anchors>`](https://github.com/daviddarnes/heading-anchors).
 
