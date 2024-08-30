@@ -90,8 +90,6 @@ class HeadingAnchors extends HTMLElement {
 			return;
 		}
 
-		this.addPolyfill();
-
 		this.headings.forEach((heading, index) => {
 			if(!heading.hasAttribute(HeadingAnchors.attributes.exclude)) {
 				let anchor = this.getAnchorElement(heading);
@@ -148,33 +146,6 @@ class HeadingAnchors extends HTMLElement {
 		}
 	}
 
-	// Polyfill-only
-	addPolyfill() {
-		if(this.polyfillAdded) {
-			return;
-		}
-
-		this.polyfillAdded = true;
-
-		this.addEventListener("focusin", (e) => {
-			let anchor = e.target.closest(`.${HeadingAnchors.classes.anchor}`);
-			if(anchor) {
-				this.positionAnchor(anchor);
-			}
-		});
-
-		this.addEventListener("mouseover", (e) => {
-			let placeholder = e.target.closest(`.${HeadingAnchors.classes.placeholder}`);
-			if(placeholder) {
-				this.positionAnchorFromPlaceholder(placeholder);
-			} else {
-				// when CSS anchor positioning is supported, this is only used to set the font
-				let anchor = e.target.closest(`.${HeadingAnchors.classes.anchor}`);
-				this.positionAnchor(anchor);
-			}
-		})
-	}
-
 	setFontProp(heading, anchor) {
 		let placeholder = heading.querySelector(`.${HeadingAnchors.classes.placeholder}`);
 		if(placeholder) {
@@ -199,6 +170,14 @@ class HeadingAnchors extends HTMLElement {
 		ph.setAttribute("aria-hidden", true);
 		ph.classList.add(HeadingAnchors.classes.placeholder);
 		ph.textContent = this.getContent();
+
+		ph.addEventListener("mouseover", (e) => {
+			let placeholder = e.target.closest(`.${HeadingAnchors.classes.placeholder}`);
+			if(placeholder) {
+				this.positionAnchorFromPlaceholder(placeholder);
+			}
+		});
+
 		return ph;
 	}
 
@@ -209,6 +188,19 @@ class HeadingAnchors extends HTMLElement {
 
 		let content = this.getContent();
 		anchor.innerHTML = `<span class="${HeadingAnchors.classes.srOnly}">${this.getAccessibleTextPrefix()}: ${heading.textContent}</span><span aria-hidden="true">${content}</span>`;
+
+		anchor.addEventListener("focus", e => {
+			let anchor = e.target.closest(`.${HeadingAnchors.classes.anchor}`);
+			if(anchor) {
+				this.positionAnchor(anchor);
+			}
+		});
+
+		anchor.addEventListener("mouseover", (e) => {
+			// when CSS anchor positioning is supported, this is only used to set the font
+			let anchor = e.target.closest(`.${HeadingAnchors.classes.anchor}`);
+			this.positionAnchor(anchor);
+		});
 
 		return anchor;
 	}
