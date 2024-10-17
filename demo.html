@@ -13,11 +13,13 @@
 		.spacer {
 			height: 80vh;
 		}
+
 		/* Eliminate layout shift */
-		heading-anchors:not(:defined) :is(h2,h3,h4,h5,h6):after {
+		heading-anchors:not(:defined) :is(h2,h3,h4,h5,h6)[id]:after {
 			content: "#";
+			content: "#" / "";
 			padding: 0 .25em;
-			opacity: 0;
+			visibility: hidden;
 		}
 		</style>
 		<script type="module" src="./heading-anchors.js"></script>
