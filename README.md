@@ -30,8 +30,9 @@ Include the `heading-anchors.js` file on your web site (via `<script type="modul
 * Internationalization (i18n) friendly using the `prefix` attribute to change the accessible text inside the anchor links, e.g. `<heading-anchors prefix="Ir a la sección titulada">`
 	* Default: `Jump to section titled`
 * Use the `content` attribute to change the character used.
-	* Default: `#`
+	* Default: `#`, supports an empty string if you want to use CSS pseudo elements.
 * Style the anchor link using `.ha-placeholder` selector (change font-family, etc).
+* Use the `data-ha-exclude` attribute to opt-out of an anchor link.
 
 ### Prior Art
 
