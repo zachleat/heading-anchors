@@ -152,8 +152,12 @@ class HeadingAnchors extends HTMLElement {
 		if(placeholder) {
 			let style = getComputedStyle(placeholder);
 			let props = ["font-weight", "font-size", "line-height", "font-family"];
-			let font = props.map(name => style.getPropertyValue(name));
-			anchor.style.setProperty("font", `${font[0]} ${font[1]}/${font[2]} ${font[3]}`);
+			let [weight, size, lh, family] = props.map(name => style.getPropertyValue(name));
+			anchor.style.setProperty("font", `${weight} ${size}/${lh} ${family}`);
+			let vars = style.getPropertyValue("font-variation-settings");
+			if(vars) {
+				anchor.style.setProperty("font-variation-settings", vars);
+			}
 		}
 	}
 
