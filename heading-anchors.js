@@ -4,9 +4,9 @@
 let globalInstanceIndex = 0;
 
 class HeadingAnchors extends HTMLElement {
-	static register(tagName) {
-		if ("customElements" in window) {
-			customElements.define(tagName || "heading-anchors", HeadingAnchors);
+	static register(tagName = "heading-anchors", registry = window.customElements) {
+		if(registry && !registry.get(tagName)) {
+			registry.define(tagName, this);
 		}
 	}
 
