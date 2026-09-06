@@ -3,7 +3,7 @@
 
 let globalInstanceIndex = 0;
 
-class HeadingAnchors extends HTMLElement {
+export class HeadingAnchors extends HTMLElement {
 	static register(tagName = "heading-anchors", registry = window.customElements) {
 		if(registry && !registry.get(tagName)) {
 			registry.define(tagName, this);
@@ -227,5 +227,3 @@ class HeadingAnchors extends HTMLElement {
 }
 
 HeadingAnchors.register();
-
-export { HeadingAnchors }
