@@ -20,10 +20,12 @@
     "url": "https://zachleat.com/"
   },
   "scripts": {
-    "demo": "npx http-server ."
+    "test": "vitest"
   },
   "license": "MIT",
   "devDependencies": {
-    "http-server": "^14.1.1"
+    "@vitest/browser-playwright": "^5.1.0",
+    "playwright": "^1.65.0",
+    "vitest": "^5.1.0"
   }
 }

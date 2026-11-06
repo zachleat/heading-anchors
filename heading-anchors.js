@@ -14,6 +14,7 @@ export class HeadingAnchors extends HTMLElement {
 		exclude: "data-ha-exclude",
 		prefix: "prefix",
 		content: "content",
+		contentTemplate: "data-ha-content",
 	}
 
 	static classes = {
@@ -166,11 +167,20 @@ export class HeadingAnchors extends HTMLElement {
 		return this.getAttribute(HeadingAnchors.attributes.prefix) || "Jump to section titled";
 	}
 
+	// Returns a new fragment for each use so the placeholder and link get identical copies.
 	getContent() {
-		if(this.hasAttribute(HeadingAnchors.attributes.content)) {
-			return this.getAttribute(HeadingAnchors.attributes.content);
+		let template = this.querySelector(`:scope > template[${HeadingAnchors.attributes.contentTemplate}]`);
+		if(template) {
+			// importNode (not cloneNode) so custom elements upgrade in this document.
+			return document.importNode(template.content, true);
 		}
-		return "#";
+
+		let fragment = document.createDocumentFragment();
+		let text = this.hasAttribute(HeadingAnchors.attributes.content) ? this.getAttribute(HeadingAnchors.attributes.content) : "#";
+		if(text) {
+			fragment.append(text);
+		}
+		return fragment;
 	}
 
 	// Placeholder nests inside of heading
@@ -178,10 +188,7 @@ export class HeadingAnchors extends HTMLElement {
 		let ph = document.createElement("span");
 		ph.setAttribute("aria-hidden", true);
 		ph.classList.add(HeadingAnchors.classes.placeholder);
-		let content = this.getContent();
-		if(content) {
-			ph.textContent = content;
-		}
+		ph.append(this.getContent());
 
 		ph.addEventListener("mouseover", (e) => {
 			let placeholder = e.target.closest(`.${HeadingAnchors.classes.placeholder}`);
@@ -198,8 +205,18 @@ export class HeadingAnchors extends HTMLElement {
 		anchor.href = `#${heading.id}`;
 		anchor.classList.add(HeadingAnchors.classes.anchor);
 
+		let label = document.createElement("span");
+		label.classList.add(HeadingAnchors.classes.srOnly);
+		label.textContent = `${this.getAccessibleTextPrefix()}: ${heading.textContent}`;
+		anchor.append(label);
+
 		let content = this.getContent();
-		anchor.innerHTML = `<span class="${HeadingAnchors.classes.srOnly}">${this.getAccessibleTextPrefix()}: ${heading.textContent}</span>${content ? `<span aria-hidden="true">${content}</span>` : ""}`;
+		if(content.hasChildNodes()) {
+			let visible = document.createElement("span");
+			visible.setAttribute("aria-hidden", "true");
+			visible.append(content);
+			anchor.append(visible);
+		}
 
 		anchor.addEventListener("focus", e => {
 			let anchor = e.target.closest(`.${HeadingAnchors.classes.anchor}`);
