@@ -2,7 +2,12 @@
   "name": "@zachleat/heading-anchors",
   "version": "1.0.5",
   "description": "Adds and positions sibling anchor links for heading elements (h1,h2,h3,h4,h5,h6) when they have an `id` attribute.",
+  "type": "module",
   "main": "heading-anchors.js",
+  "exports": "./heading-anchors.js",
+  "files": [
+    "heading-anchors.js"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -14,14 +19,16 @@
     "url": "https://github.com/zachleat/heading-anchors/issues"
   },
   "homepage": "https://github.com/zachleat/heading-anchors#readme",
-  "author": {
-    "name": "Zach Leatherman",
-    "email": "zachleatherman@gmail.com",
-    "url": "https://zachleat.com/"
-  },
+  "author": "Zach Leatherman (https://zachleat.com/)",
   "scripts": {
     "test": "vitest"
   },
+  "keywords": [
+    "web-component",
+    "custom-element",
+    "heading",
+    "anchor"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@vitest/browser-playwright": "^5.1.0",
